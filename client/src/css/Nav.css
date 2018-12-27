@@ -1,0 +1,27 @@
+.navbar .navbar-collapse {
+    /* text-align: center; */
+    /* display: flex;
+    justify-content: center;
+    flex-wrap: wrap; */
+    font-weight: bold;
+  }
+  i{
+      color: white;
+      font-size: 25px;
+  }
+
+  h1{
+      margin-top: 220px;
+  }
+
+  /* .navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+}
+.navbar .navbar-collapse {
+    text-align: center;
+} */
+
+  /* .navbar {
+    max-height: 40px;
+} */

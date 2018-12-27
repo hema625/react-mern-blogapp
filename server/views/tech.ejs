@@ -1,0 +1,11 @@
+<h1>Home</h1>
+
+<% data.forEach(num=> { %>
+   <div class = "container">
+       <strong><%= num.title %></strong>
+       <p><%=num.content%></p>
+       <p><%=num.author%></p>
+       <p><%=num.category%></p>
+   </div>
+
+<% }) %>
