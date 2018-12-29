@@ -6,6 +6,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 var Blog = require("./models/blogsch");
 var Cat = require('./models/catmodel');
+var methodOverride = require('method-override')
 
 var indexRouter = require('./routes/index');
 var techRouter = require('./routes/tech');
@@ -17,6 +18,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(methodOverride('_method'));
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -41,7 +43,7 @@ mongoose.connect("mongodb://blog:blogapp1@ds039504.mlab.com:39504/blogapp",{useN
 // })
 
 app.use('/', indexRouter);
-app.use('/api', techRouter);
+// app.use('/api', techRouter);
 app.use('/', allRouter);
 app.use('/', alldata);
 

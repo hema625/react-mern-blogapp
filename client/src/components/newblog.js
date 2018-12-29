@@ -1,12 +1,14 @@
 import React from 'react';
 import '../css/newblog.css';
+import { Redirect} from 'react-router-dom';
 
 class newB extends React.Component{
   state = {
      title : null,
      content : null,
      author : null,
-     category : null
+     category : null,
+     submitted : false
    }
    handleChange = (e)=>{
      this.setState({
@@ -29,39 +31,47 @@ class newB extends React.Component{
         "author" : this.state.author, 
         "category" : this.state.category
       })
-    }).then(res=>res.json)
+    }).then(res=>{
+      console.log("done",res)
+      this.setState({
+        submitted : true
+      }) 
+    })
     .then(data=>console.log("real",data));
   }
+  
   render() {
-    // console.log("title",this.state.title);
-    // console.log("content",this.state.content);
-    // console.log("author",this.state.author);
-    // console.log("category",this.state.category);
-    return(<div className = "container">
+    let redirect = null;
+   if (this.state.submitted) {
+    redirect = <Redirect to = "/" />;
+   }
+    return(
+    <div className = "container">
+      {redirect}
     <h3>Enter new blog</h3>
         <form onSubmit = {this.handleSubmit}>
         <div className="form-group">
     <label htmlFor="title">Title</label>
-    <input type="text" className="form-control" id="title" name = "title"
+    <input type="text" className="form-control" id="title" name = "title" required
     onChange={this.handleChange}
      placeholder="Enter the title"/>
   </div>
   <div className="form-group">
     <label htmlFor="content">Content</label>
-    <textarea className="form-control" id="content" rows="3" name = "content"
-     onChange={this.handleChange}
+    <textarea className="form-control" id="content" rows="3" name = "content" required
+     onChange={this.handleChange} 
     placeholder = "Write your blog here">
     </textarea>
   </div>
   <div className="form-group">
     <label htmlFor="author">Author</label>
-    <input type="text" className="form-control" id="author" name = "author"
-    onChange={this.handleChange}
+    <input type="text" className="form-control" id="author" name = "author" required
+    onChange={this.handleChange} 
      placeholder="Your name here"/>
   </div>
   <div className="form-group">
-    <label htmlFor="category">Author</label>
-    <input type="text" className="form-control" id="category" name = "category"
+    <label htmlFor="category">Category</label>
+    <input type="text" className="form-control" id="category" name = "category" required
      onChange={this.handleChange}
      placeholder="category"/>
   </div>
